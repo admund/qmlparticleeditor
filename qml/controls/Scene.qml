@@ -18,6 +18,7 @@
 
 import QtQuick 2.4
 import QtQuick.Controls 1.3
+import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import "../scripts/ObjectManager.js" as ObjectManager
 
@@ -71,6 +72,16 @@ Item {
         id: backgroundRect
         anchors.fill: parent
         color: "#ffffff"
+    }
+
+    Image {
+        id: backgroundImage
+        anchors.fill: backgroundRect
+
+        onSourceSizeChanged: {
+            scene.width = sourceSize.width
+            scene.height = sourceSize.height
+        }
     }
 
     Item {
@@ -137,10 +148,12 @@ Item {
                 PropertyNameLabel {
                     text: "Color"
                 }
-                ColorSelector {
-                    color: backgroundRect.color
-                    onColorChanged:
-                        backgroundRect.color = color
+
+                ImageSelector {
+                    Layout.fillWidth: true
+                    onPathChanged: {
+                        backgroundImage.source = path
+                    }
                 }
 
                 PropertyNameLabel {

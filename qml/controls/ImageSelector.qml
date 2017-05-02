@@ -46,7 +46,7 @@ RowLayout {
 
     FileDialog {
         id: fileDialog
-        modality: Qt.ApplicationModal
+//        modality: Qt.ApplicationModal
         title: "Please choose a file"
         nameFilters: [ "Image files (*.jpg *.png)" ]
         onAccepted: {
